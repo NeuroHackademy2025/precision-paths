@@ -6,6 +6,17 @@ import re
 def parse_age(age):
     """
     Convert various age formats into a numeric value.
+
+    Parameters
+    ----------
+    age : str or float
+        Age in various formats, e.g., "25", "20–30", "18 to 25", etc.
+    
+    Returns
+    -------
+    float
+        The average of the age range if a range is provided, or the age itself if numeric.
+        Returns NaN if parsing fails.
     """
 
     # Handle strings first
