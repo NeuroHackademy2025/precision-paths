@@ -5,3 +5,4 @@
 # Ignore Python cache files
 venv/
 /scripts/__pycache__
+/OpenerNeuro/__pycache__
