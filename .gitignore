@@ -4,3 +4,4 @@
 .DS_Store
 # Ignore Python cache files
 venv/
+/scripts/__pycache__
