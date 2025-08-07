@@ -1,0 +1,4 @@
+# Don't pull these files
+
+.DS_Store # Ignore MackOS Finder Data
+
