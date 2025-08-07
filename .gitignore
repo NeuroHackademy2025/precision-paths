@@ -2,3 +2,5 @@
 
 # Ignore MackOS Finder Data
 .DS_Store
+# Ignore Python cache files
+venv/
