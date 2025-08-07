@@ -145,7 +145,7 @@ filtered = filtered[
 # ————————————————————— BINNING —————————————————————
 bins = np.arange(age_range[0], age_range[1]+bin_size, bin_size)
 # say bin size = 5, produce labels on the x-axis like "0-5", "5-10", ..., "75-80"
-labels = [f"{b}–{b+bin_size}" for b in bins[:-1]]
+labels = [f"{b:02d}–{b+bin_size:02d}" for b in bins[:-1]]
 filtered['age_bin'] = pd.cut(
     filtered['Age_num'],
     bins=bins,
@@ -163,7 +163,8 @@ st.bar_chart(counts)
 st.subheader("Group Demographics")
 st.write(f"Total participants: {len(filtered)}")
 st.write(f"Age range: {filtered['Age_num'].min()}–{filtered['Age_num'].max()} years (Mean: {filtered['Age_num'].mean():.3f} ± {filtered['Age_num'].std():.3f} years)")
-st.write(f'Sex: {(df['Sex'] == 'Female').sum()} Female')
+st.write(f'Sex: {(filtered['Sex'] == 'Female').sum()} Female \t{(filtered['Sex'] == 'Male').sum()} Male \t{(~filtered['Sex'].isin(['Female','Male'])).sum()} Other/Unknown/Perfer not to say')
+st.markdown("---")
 
 # ————— DISPLAY DATA CSV —————
 st.subheader("Data")
