@@ -53,6 +53,20 @@ def get_latest_snapshot(dataset_id: str):
 
 # get the list of JSON files in a given OpenNeuro dataset
 def list_s3_json_files(dataset_id):
+    """
+    List all JSON files in a given OpenNeuro dataset (via public S3).
+    
+    Parameters
+    ----------
+    dataset_id : str
+        The OpenNeuro dataset ID (e.g., "ds000001").
+    
+    Returns
+    -------
+    dict
+        A dictionary mapping file paths to their download URLs.
+    """
+    
     s3 = boto3.client('s3', config=Config(signature_version=UNSIGNED))
     bucket = 'openneuro.org'
     prefix = f"{dataset_id}/"
@@ -140,7 +154,7 @@ def jsons_to_dataframe(openneuro_url: str):
     for fname, url in tqdm(json_urls.items(), desc="Downloading JSONs"):
         r = requests.get(url)
         r.raise_for_status()
-        flat = flatten_json(r.json())
+        flat = flatten_json(r.json()) #####
         flat["__file__"] = fname
         records.append(flat)
 
